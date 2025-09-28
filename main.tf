@@ -1400,7 +1400,7 @@ resource "aws_default_vpc" "this" {
 }
 
 resource "aws_default_security_group" "this" {
-  count = local.create_vpc && var.manage_default_security_group ? 1 : 0
+  count = local.create_vpc || var.manage_default_security_group ? 1 : 0
 
   region = var.region
 
@@ -1503,7 +1503,7 @@ resource "aws_default_network_acl" "this" {
 ################################################################################
 
 resource "aws_default_route_table" "default" {
-  count = local.create_vpc && var.manage_default_route_table ? 1 : 0
+  count = local.create_vpc || var.manage_default_route_table ? 1 : 0
 
   region = var.region
 
